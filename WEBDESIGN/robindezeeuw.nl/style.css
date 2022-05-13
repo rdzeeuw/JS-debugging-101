@@ -1,0 +1,612 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Walter+Turncoat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;1,100&display=swap');
+
+
+:root {
+    --clr-dark: #180d49;
+    --clr-light: #fcf7ff;
+    --clr-accent: rgb(203, 243, 59);
+    --clr-green: #00c9a3;
+    --title-font: 'Viga', sans-serif;
+    --main-font: 'Raleway', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: var(--main-font);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--clr-green);
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 150px;
+    max-height: 200px;
+    padding: 2em 2em;
+}
+
+.social-item {
+    margin-left: 2em;
+    font-size: 1.5em;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.logo > h1 {
+    color: var(--clr-accent);
+    font-size: 3em;
+    font-family: 'Viga', sans-serif;
+    line-height: .8;
+    text-transform: uppercase;
+    flex: 0 1 auto;
+    
+}
+.logo > h3 {
+    text-transform: uppercase;
+    color: var(--clr-light);
+    font-family: var(--main-font);
+    font-weight: 100;
+    font-size: 1.15em;
+}
+
+.social-item > a{
+    display: flex;
+    gap: 1em;
+}
+
+.social-item > a > h4 {
+    font-size: .7em;
+    color: var(--clr-light);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/* main ------------------------------- */
+
+.container {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 300px);
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+}
+
+.card {
+    background-color: white;
+    width: 20%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.card-overlay {
+    background-color: rgba(0, 201, 163, .15);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateX(-300px);
+    transition: all .3s ease;
+}
+
+.card:hover .card-overlay {
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+.title-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 2em;
+    left: 0;
+    right: 0;
+    height: 4em;
+    background-color: rgba(24, 13, 73, .7);
+    z-index: 1;
+}
+
+.title-overlay > h3 {
+    color: var(--clr-light);
+    font-size: 1em;
+    font-family: 'Viga', sans-serif;
+    line-height: 1;
+    text-transform: uppercase;
+    padding-inline: .3em 1.2em;
+}
+
+.card1 {
+    background-image: url(img/am-doelen.jpg);
+    background-position: left -8em top 0;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+}
+
+.card2 {
+    background-image: url(img/consort.jpg);
+    background-position: left -3em top 0;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+}
+
+.card3 {
+    background-image: url(img/ars-musica.jpg);
+    background-position: center top 0;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+}
+
+.card4 {
+    background-image: url(img/basles.jpg);
+    background-position: center top 0;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+}
+
+.card5 {
+    background-image: url(img/hoofd.png);
+    background-position: right top 0;
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+
+/* modal overlay ------------------------------------ */
+.overlay {
+    position: fixed;
+    background-color: rgba(0,0,0,.4);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .2s ease-in;
+    opacity: 0;
+    z-index: -1;
+}
+
+.content-box {
+    border: 2px solid var(--clr-dark);
+    background-color: var(--clr-light);
+    color: var(--clr-dark);
+    width: 90%;
+    height: 80%;
+    min-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow-y: scroll;
+    z-index: 9;
+}
+
+.content-text {
+    padding: 2em 5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-text > p {
+    margin-bottom: 1em;
+}
+
+.title{
+    text-transform: uppercase;
+    font-family: 'Viga', sans-serif;
+    line-height: 2.7;
+}
+
+.close-btn {
+    position: fixed;
+    top: 6em;
+    right: 6em;
+    cursor: pointer;
+    z-index: 9;
+    opacity: 1;
+    color: var(--clr-dark);
+    background-color: rgba(255,255,255,0.5);
+    padding: .5em;
+}
+
+.concerts-is-open .concerts-overlay,
+.consort-is-open .consort-overlay,
+.ensembles-is-open .ensembles-overlay,
+.lessons-is-open .lessons-overlay,
+.about-is-open .about-overlay {
+    opacity: 1;
+    z-index: 5;
+}
+
+
+/*  CONCERTS */
+
+.concert-list {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+
+.concert-list > li {
+    margin-top: 1em;
+    padding: 1em 1em 1em 1.5em;
+    
+}
+
+.concert-list-item > li {
+    padding-left: 1em;
+}
+
+.concert-list > li:nth-child(odd) {
+    background-color: beige;
+}
+
+.concert-list > li:nth-child(even) {
+    background-color: rgb(238, 238, 232);
+}
+
+/* adding icons before list */
+.concert-list-item > :first-child::marker {
+    color: var(--clr-dark);
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 700;
+    content: '\f017';
+}
+
+.concert-list-item > :nth-child(2)::marker {
+    color: var(--clr-dark);
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 700;
+    content: '\f3c5';
+}
+
+.concert-list-item > :nth-child(3)::marker {
+    color: var(--clr-dark);
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 700;
+    content: '\f3ff';
+}
+
+/* CONSORT */
+
+.consort-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+    width: 100%;
+}
+
+.consort-left, .consort-right {
+    max-width: 60ch;
+    min-width: 30ch;
+}
+
+.consort-img {
+    width: 100%;
+    max-width: 700px;
+    margin: 1em auto;
+    object-fit: cover;
+}
+
+.video-container {
+    margin-block: 2em;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+}
+
+.video-item {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ENSEMBLES */
+
+.ensemble-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+}
+
+.ensemble {
+    width: 100%;
+    margin-bottom: 2em;
+    min-width: 200px;
+}
+
+.am-img {
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+}
+
+
+.ho-img {
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+    object-position:bottom ;
+}
+
+/* LESSONS */
+.lesson-container {
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
+}
+
+.lesson-container > .left > p {
+    margin-bottom: 1em;
+}
+
+.left {
+    width: 60%;
+}
+
+.right {
+    width: 40%;
+}
+
+.right > ul {
+    margin-bottom: 2em;
+}
+
+.every-week > span, .every-other-week > span  {
+    font-size: 2em;
+    
+}
+
+.signup-btn {
+    padding: 1.5em 2.5em;
+    background: var(--clr-accent);
+    border: 2px solid var(--clr-dark);
+    color: var(--clr-dark);
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 3em auto;
+}
+
+/* ABOUT */
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 3em;
+    width: 100%;
+    height: 100%;
+}
+
+.about-left {
+    background-image: url(img/hoofd2.png);
+    background-size: cover;
+    background-position: right center; 
+    position: relative;
+    min-width: 250px;
+    max-height: 500px;
+}
+
+.about-right > p {
+    margin-bottom: 1em;
+}
+
+
+/* FORM ------------------------------- */
+.contact-text {
+    max-width: 50ch;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-block: 1em;
+    color: var(--clr-dark);
+    font-family: var(--main-font);
+    
+}
+
+.contact-form > input {
+    margin-bottom: 1em;
+    padding: .5em 1em;
+}
+
+.question {
+    resize: vertical;
+}
+
+.form-btn {
+    margin-top: 1em;
+    background-color: var(--clr-accent);
+    border: 2px solid var(--clr-dark);
+    height: 50px;
+    width: 30%;
+    padding: .5em 1.5em;
+    color: var(--clr-dark);
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.form-btn:hover {
+    background-color: rgba(0, 201, 163, .5);
+}
+
+
+/* media queries */
+
+@media only screen and (max-width: 800px) {
+    body {
+        overflow-y: scroll;
+        height: 1000px;
+    }
+
+    header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: auto;
+        padding: 1.5em .5em;
+    }
+
+    .social-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 100%;
+        margin-top: 1em;
+        font-size: 1.5em;
+        margin-left: 0;
+    }
+
+    .container {
+        margin-top: 1em;
+        width: 90vw;
+        height: 100%;
+        flex-direction: column;
+        overflow: scroll;
+    }
+
+    .card {
+        width: 100%;
+        clip-path: none;
+        margin-bottom: 1em;
+    }
+    .card1 {
+        background-position: left 0 top 0;
+    }
+    .card2 {
+        background-position: center top -2em;
+    }
+    .card3 {
+        background-position: left 0 top 0;
+    }
+    .card4 {
+        background-position: center center;
+    }
+    .card5 {
+        background-position: center top -6em;
+    }
+
+    .title-overlay {
+        bottom: 1em;
+        height: 3em;
+    }
+
+    .content-box {
+        width: 90%;
+        margin-top: 4em;
+        height: 90%;
+        overflow-y: scroll;
+    }
+
+    .content-text {
+        padding: 2em 2em;
+    }
+
+    .close-btn {
+        top: 12%;
+        right: 7%;
+    }
+
+    .consort-container {
+        grid-template-columns: 1fr;
+    }
+
+    .concert-list {
+        grid-template-columns: 1fr;
+    }
+
+    .video-container {
+        grid-template-columns: 1fr;
+    }
+
+    .ensemble-wrapper {
+        grid-template-columns: 1fr;
+        gap: none;
+    }
+
+    .lesson-container {
+        flex-direction: column;
+    }
+
+    .left, .right {
+        width: 100%;
+    }
+    
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-text {
+        width: 100%;
+    }
+    
+    .about-img {
+        width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+
+    .logo > h1 {
+        font-size: 2em;
+    }
+
+    .logo > h3 {
+        font-size: .77em;
+    }
+
+    .container {
+        margin-top: 2em;
+        width: 100vw;
+        height: 1000px;
+        flex-direction: column;
+    }
+
+    .content-box {
+        width: 100%;
+    }
+
+    .social-item {
+        font-size: 1em;
+    }
+
+    .close-btn {
+        right: 1em;
+    }
+  }
